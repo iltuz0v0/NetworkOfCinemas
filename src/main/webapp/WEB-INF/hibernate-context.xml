@@ -10,10 +10,10 @@
         <property name="configLocation" value="/WEB-INF/hibernate.cfg.xml"/>
     </bean>
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
-        <property name="jdbcUrl" value="jdbc:mysql://localhost/network_of_cinemas"/>
-        <property name="user" value="root"/>
-        <property name="password" value="nelbronel"/>
+        <property name="driverClass" value="${jdbc.DriverClassName}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
         <property name="minPoolSize" value="5"/>
         <property name="maxPoolSize" value="100"/>
         <property name="maxStatements" value="10"/>

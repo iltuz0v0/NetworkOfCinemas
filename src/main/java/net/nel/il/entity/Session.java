@@ -1,6 +1,7 @@
 package net.nel.il.entity;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -12,11 +13,11 @@ public class Session {
     @Column(name = "id")
     private Integer id;
 
-    @Temporal(value = TemporalType.TIME)
+    @Temporal(value = TemporalType.TIMESTAMP)
     @Column(name = "start_time")
     private Date startTime;
 
-    @Temporal(value = TemporalType.TIME)
+    @Temporal(value = TemporalType.TIMESTAMP)
     @Column(name = "end_time")
     private Date endTime;
 

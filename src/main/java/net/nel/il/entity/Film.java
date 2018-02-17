@@ -1,6 +1,7 @@
 package net.nel.il.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -23,7 +24,10 @@ public class Film {
     @Column(name = "description")
     private String description;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @Column(name = "premiere")
+    private Date premiere;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(name = "film_genres_list", joinColumns = @JoinColumn(name = "film_id"),
                 inverseJoinColumns = @JoinColumn(name = "genre_id"))
     private List<Genre> genres;
@@ -81,11 +85,19 @@ public class Film {
         this.genres = genres;
     }
 
-    public List<Cost> getProducts() {
+    public List<Cost> getCosts() {
         return costs;
     }
 
-    public void setProducts(List<Cost> costs) {
+    public void setCosts(List<Cost> costs) {
         this.costs = costs;
+    }
+
+    public Date getPremiere() {
+        return premiere;
+    }
+
+    public void setPremiere(Date premiere) {
+        this.premiere = premiere;
     }
 }

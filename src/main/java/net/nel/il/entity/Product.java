@@ -17,7 +17,7 @@ public class Product {
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "cost_id")
-    private Film cost;
+    private Cost cost;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Session> sessions;
@@ -38,11 +38,11 @@ public class Product {
         this.film = film;
     }
 
-    public Film getCost() {
+    public Cost getCost() {
         return cost;
     }
 
-    public void setCost(Film cost) {
+    public void setCost(Cost cost) {
         this.cost = cost;
     }
 

@@ -3,7 +3,7 @@ package net.nel.il.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "sessoins_list", schema = "network_of_cinemas")
+@Table(name = "sessions_list", schema = "network_of_cinemas")
 public class SessionList {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,7 +16,7 @@ public class SessionList {
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "session_id")
-    private HallList session;
+    private Session session;
 
     public Integer getId() {
         return id;
@@ -34,11 +34,11 @@ public class SessionList {
         this.hallList = hallList;
     }
 
-    public HallList getSession() {
+    public Session getSession() {
         return session;
     }
 
-    public void setSession(HallList session) {
+    public void setSession(Session session) {
         this.session = session;
     }
 }

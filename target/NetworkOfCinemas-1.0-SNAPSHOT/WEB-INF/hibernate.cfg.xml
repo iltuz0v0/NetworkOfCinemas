@@ -5,7 +5,20 @@
 <hibernate-configuration>
     <session-factory>
         <property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
-        <property name="show_sql">true</property>
-        <property name="format_sql">true</property>
+        <property name="show_sql">false</property>
+        <property name="format_sql">false</property>
+        <mapping class="net.nel.il.entity.System"/>
+        <mapping class="net.nel.il.entity.SessionList"/>
+        <mapping class="net.nel.il.entity.Session"/>
+        <mapping class="net.nel.il.entity.Product"/>
+        <mapping class="net.nel.il.entity.HallList"/>
+        <mapping class="net.nel.il.entity.Hall"/>
+        <mapping class="net.nel.il.entity.Genre"/>
+        <mapping class="net.nel.il.entity.FilmGenresList"/>
+        <mapping class="net.nel.il.entity.Film"/>
+        <mapping class="net.nel.il.entity.Cost"/>
+        <mapping class="net.nel.il.entity.Cinema"/>
+        <mapping class="net.nel.il.entity.users.User"/>
+        <mapping class="net.nel.il.entity.users.Role"/>
     </session-factory>
 </hibernate-configuration>

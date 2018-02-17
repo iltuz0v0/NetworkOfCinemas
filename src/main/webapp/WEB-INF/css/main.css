@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand');
+.main_container{
+    background-color: #ccc;
+    border: solid 1px #aaa;
+    width: 840px;
+    overflow: hidden;
+    box-shadow: 5px 5px 6px 3px #555555;
+    margin: auto;
+}
+.main_container_element_premiere{
+    width: 260px;
+    height: 470px;
+    margin-left: 15px;
+    margin-top: 10px;
+    position: relative;
+    float: left;
+}
+.premiere_image{
+    width: 260px;
+    height: 470px;
+}
+.main_container_element_film{
+    width: 156px;
+    height: 280px;
+    margin-left: 10px;
+    margin-top: 10px;
+    position: relative;
+    float: left;
+}
+.film_image{
+    width: 156px;
+    height: 280px;
+}
+.film_container{
+    background-color: #ccc;
+    border: solid 1px #aaa;
+    width: 840px;
+    overflow: hidden;
+    box-shadow: 5px 5px 6px 3px #555555;
+    margin: auto;
+}
+.premiere_image{
+    width: 260px;
+    height: 470px;
+    margin: 15px;
+    position: relative;
+    float: left;
+}
+.film_description{
+    position: relative;
+    margin-left: 20px;
+}

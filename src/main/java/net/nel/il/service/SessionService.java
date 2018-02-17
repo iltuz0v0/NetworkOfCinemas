@@ -19,8 +19,13 @@ public class SessionService {
     SessionDAO sessionDAO;
 
     @Transactional
-    public List<?>[] getSessionsByFilmName(String filmName){
-
-        return null;
+    public ArrayList<?>[] getSessionsByCityAndByFilmName(String city, String filmName){
+        ArrayList<Cinema> cinemas = (ArrayList<Cinema>) sessionDAO.getCinemasByCity(city);
+        ArrayList<ArrayList<SessionList>> sessions = new ArrayList<ArrayList<SessionList>>();
+        for(int amount = 0; amount < cinemas.size(); amount++){
+            sessions.add((ArrayList<SessionList>) sessionDAO.getSessionsByCityAndFilmNameAndCinema(city,
+                    filmName, cinemas.get(amount).getName()));
+        }
+        return new ArrayList<?>[]{cinemas, sessions};
     }
 }

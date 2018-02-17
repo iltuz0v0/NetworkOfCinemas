@@ -2,6 +2,7 @@ package net.nel.il.controller;
 
 import net.nel.il.entity.Film;
 import net.nel.il.service.FilmService;
+import net.nel.il.session_entries.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.FileCopyUtils;
@@ -17,7 +18,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@SessionAttributes("city")
+@SessionAttributes("client")
 public class MainController {
     private final int filmsAmount = 3;
     @Autowired
@@ -32,7 +33,6 @@ public class MainController {
     @RequestMapping(value = "/main", method = RequestMethod.GET)
     public ModelAndView showMainPage(ModelAndView modelAndView){
         modelAndView.setViewName("main");
-        modelAndView.addObject("city", null);
         List<Film> films = filmService.getFilms();
         List<Film> premiereFilms = new ArrayList<Film>();
         for (int filmsAmount = 0; filmsAmount < films.size(); filmsAmount++){
@@ -49,13 +49,15 @@ public class MainController {
     @RequestMapping(value = "/main/choice", method = RequestMethod.GET)
     public ModelAndView getCity(ModelAndView modelAndView){
         modelAndView.setViewName("choice");
+        modelAndView.addObject("fillClient", new Client());
         return modelAndView;
     }
     @RequestMapping(value = "/main/choice", method = RequestMethod.POST)
     public ModelAndView getCity(ModelAndView modelAndView, @RequestParam String choice,
-                                @SessionAttribute("city") String city){
+                     @SessionAttribute("client") Client client){
         System.out.println(choice);
-        modelAndView.setViewName("choice");
+        client.setCity(choice);
+        modelAndView.setViewName("redirect:/main");
         return modelAndView;
     }
 
@@ -70,5 +72,10 @@ public class MainController {
         response.setHeader("Content-Disposition", "attachment; filename=" + poster);
         response.setHeader("Content-Length", String.valueOf(file.length()));
         FileCopyUtils.copy(fileInputStream, response.getOutputStream());
+    }
+
+    @ModelAttribute("client")
+    public Client setUpUserForm() {
+        return new Client();
     }
 }

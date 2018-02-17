@@ -1,21 +1,21 @@
 package net.nel.il.controller;
 
-import net.nel.il.entity.Film;
-import net.nel.il.entity.Genre;
-import net.nel.il.entity.Session;
+import net.nel.il.entity.*;
 import net.nel.il.service.FilmService;
 import net.nel.il.service.SessionService;
+import net.nel.il.session_entries.Client;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @Controller
 @RequestMapping("/main")
-@SessionAttributes("city")
+@SessionAttributes("client")
 public class FilmController {
 
     @Autowired
@@ -26,8 +26,8 @@ public class FilmController {
 
     @RequestMapping(value = "/{filmname}", method = RequestMethod.GET)
     public ModelAndView showFilm(ModelAndView modelAndView, @PathVariable String filmname,
-                                 @SessionAttribute("city") String city){
-        if(!isCity(city)) return new ModelAndView("redirect:/main/choice");
+                                 @SessionAttribute("client") Client client){
+        if(!isCity(client)) return new ModelAndView("redirect:/main/choice");
         modelAndView.setViewName("film");
         Film film = filmService.getFilmByName(filmname);
         modelAndView.addObject("film", film);
@@ -37,15 +37,17 @@ public class FilmController {
 
     @RequestMapping(value = "/{filmname}/table", method = RequestMethod.GET)
     public ModelAndView showTable(ModelAndView modelAndView, @PathVariable String filmname,
-                                  @SessionAttribute("city") String city){
-        if(!isCity(city)) return new ModelAndView("redirect:/main/choice");
+                                  @SessionAttribute("client") Client client){
+        if(!isCity(client)) return new ModelAndView("redirect:/main/choice");
         modelAndView.setViewName("table");
-        //List<Session> sessions = sessionService.getSessionsByFilmName(filmname);
+        List<?>[] arrays =
+                sessionService.getSessionsByCityAndByFilmName(client.getCity(), filmname);
+        modelAndView.addObject("cinemas", (ArrayList<Cinema>)arrays[0]);
+        modelAndView.addObject("sessions", (ArrayList<ArrayList<SessionList>>)arrays[1]);
         return modelAndView;
     }
-    public boolean isCity(String destinationCity){
-        System.out.println(destinationCity);
-        return destinationCity!=null;
+    public boolean isCity(Client client){
+        return !client.getCity().equals(" ");
     }
 
 }

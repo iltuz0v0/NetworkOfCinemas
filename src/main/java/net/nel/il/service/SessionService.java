@@ -28,4 +28,9 @@ public class SessionService {
         }
         return new ArrayList<?>[]{cinemas, sessions};
     }
+
+    @Transactional
+    public void saveSession(Session session){
+        sessionDAO.saveSession(session);
+    }
 }

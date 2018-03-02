@@ -2,8 +2,10 @@ package net.nel.il.entity.users;
 
 
 import net.nel.il.entity.Hall;
+import org.springframework.security.core.GrantedAuthority;
 
 import javax.persistence.*;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -20,12 +22,42 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    transient private String confirmPassword;
+    @Transient
+    private String confirmPassword;
+
+    @Transient
+    private Collection<GrantedAuthority> currentRoles;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
     private List<Role> roles;
+
+    public User(){
+        username = null;
+    }
+
+    public User(String username){
+        this.username = username;
+    }
+
+    public User(String username, String password){
+        this.username = username;
+        this.password = password;
+    }
+
+    public User(String username, Collection<GrantedAuthority> grantedAuthorities){
+        this.username = username;
+        this.currentRoles = grantedAuthorities;
+    }
+
+    public Collection<GrantedAuthority> getCurrentRoles() {
+        return currentRoles;
+    }
+
+    public void setCurrentRoles(Collection<GrantedAuthority> currentRoles) {
+        this.currentRoles = currentRoles;
+    }
 
     public Integer getId() {
         return id;

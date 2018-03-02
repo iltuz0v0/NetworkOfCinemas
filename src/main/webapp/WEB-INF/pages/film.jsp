@@ -6,6 +6,7 @@
     <style><%@include file="/WEB-INF/css/main.css"%></style>
 </head>
 <body>
+<c:import url="head.jsp"/>
     <div>
         <div class="film_container">
             <img src="/main/getimage/${film.poster}" class="premiere_image"></a>

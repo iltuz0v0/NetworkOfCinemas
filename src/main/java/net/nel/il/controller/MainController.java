@@ -1,6 +1,7 @@
 package net.nel.il.controller;
 
 import net.nel.il.entity.Film;
+import net.nel.il.entity.users.User;
 import net.nel.il.service.FilmService;
 import net.nel.il.session_entries.Client;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-@SessionAttributes("client")
+@SessionAttributes({"client", "loggeduser"})
 public class MainController {
     private final int filmsAmount = 3;
+
     @Autowired
     private FilmService filmService;
 
@@ -31,7 +33,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/main", method = RequestMethod.GET)
-    public ModelAndView showMainPage(ModelAndView modelAndView){
+    public ModelAndView showMainPage(ModelAndView modelAndView, @SessionAttribute("loggeduser") User loggedUser){
         modelAndView.setViewName("main");
         List<Film> films = filmService.getFilms();
         List<Film> premiereFilms = new ArrayList<Film>();
@@ -47,7 +49,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/main/choice", method = RequestMethod.GET)
-    public ModelAndView getCity(ModelAndView modelAndView){
+    public ModelAndView getCity(ModelAndView modelAndView, @SessionAttribute("loggeduser") User loggedUser){
         modelAndView.setViewName("choice");
         modelAndView.addObject("fillClient", new Client());
         return modelAndView;
@@ -55,7 +57,6 @@ public class MainController {
     @RequestMapping(value = "/main/choice", method = RequestMethod.POST)
     public ModelAndView getCity(ModelAndView modelAndView, @RequestParam String choice,
                      @SessionAttribute("client") Client client){
-        System.out.println(choice);
         client.setCity(choice);
         modelAndView.setViewName("redirect:/main");
         return modelAndView;
@@ -65,7 +66,20 @@ public class MainController {
     public @ResponseBody
     void getDownloadBook(@PathVariable String poster,
                          HttpServletResponse response) throws IOException {
-        File file = new File("/home/ilya/Images/1.jpg");
+        File file = new File("/home/ilya/Images/" + poster + ".jpg");
+        InputStream fileInputStream = new FileInputStream(file);
+        response.setContentType("image/*");
+        response.setCharacterEncoding("UTF-8");
+        response.setHeader("Content-Disposition", "attachment; filename=" + poster);
+        response.setHeader("Content-Length", String.valueOf(file.length()));
+        FileCopyUtils.copy(fileInputStream, response.getOutputStream());
+    }
+
+    @RequestMapping(value = "/main/getimage/inside/{poster}", method = RequestMethod.GET)
+    public @ResponseBody
+    void getInsideImage(@PathVariable String poster,
+                         HttpServletResponse response) throws IOException {
+        File file = new File("/home/ilya/Images/" + poster + ".png");
         InputStream fileInputStream = new FileInputStream(file);
         response.setContentType("image/*");
         response.setCharacterEncoding("UTF-8");
@@ -75,7 +89,11 @@ public class MainController {
     }
 
     @ModelAttribute("client")
-    public Client setUpUserForm() {
+    public Client setUpClientForm() {
         return new Client();
+    }
+    @ModelAttribute("loggeduser")
+    public User setUpUserForm(){
+        return new User();
     }
 }

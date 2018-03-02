@@ -15,7 +15,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/main")
-@SessionAttributes("client")
+@SessionAttributes({"client", "loggeduser"})
 public class FilmController {
 
     @Autowired

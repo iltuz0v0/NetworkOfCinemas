@@ -3,8 +3,10 @@
 <html>
 <head>
     <title>Title</title>
+    <style><%@include file="/WEB-INF/css/main.css"%></style>
 </head>
 <body>
+<c:import url="head.jsp"/>
     <div>
         <c:forEach var="sessionsArray" items="${sessions}" varStatus="status">
             <p>${cinemas.get(status.index).name}</p>

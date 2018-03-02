@@ -2,10 +2,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Main</title>
     <style><%@include file="/WEB-INF/css/main.css"%></style>
 </head>
 <body>
+<c:import url="head.jsp"/>
     <div class="main_container">
         <c:forEach var="film" items="${premierefilms}">
             <div class="main_container_element_premiere">
@@ -21,5 +22,8 @@
             </div>
         </c:forEach>
     </div>
+<br/>
+<br/>
+<br/>
 </body>
 </html>

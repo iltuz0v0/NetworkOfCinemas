@@ -18,6 +18,15 @@ public class SessionList {
     @JoinColumn(name = "session_id")
     private Session session;
 
+    public SessionList(){
+
+    }
+
+    public SessionList(HallList hallList, Session session){
+        this.hallList = hallList;
+        this.session = session;
+    }
+
     public Integer getId() {
         return id;
     }

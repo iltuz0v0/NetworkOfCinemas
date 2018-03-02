@@ -28,6 +28,16 @@ public class Session {
     @ManyToMany(mappedBy = "sessions", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<HallList> hallLists;
 
+    public Session(){
+
+    }
+
+    public Session(Product product, Date startTime, Date endTime){
+        this.product = product;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
     public Integer getId() {
         return id;
     }

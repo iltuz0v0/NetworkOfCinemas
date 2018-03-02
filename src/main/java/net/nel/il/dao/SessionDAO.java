@@ -36,4 +36,9 @@ public class SessionDAO {
         query.setParameter("currentCity", city);
         return (List<Cinema>)query.list();
     }
+
+    public void saveSession(net.nel.il.entity.Session session){
+        Session hibSession = sessionFactory.getCurrentSession();
+        hibSession.save(session);
+    }
 }

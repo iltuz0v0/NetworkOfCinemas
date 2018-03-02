@@ -4,9 +4,11 @@
 <html>
 <head>
     <title>Title</title>
+    <style><%@include file="/WEB-INF/css/main.css"%></style>
 </head>
 <body>
-<form action="/main/choice" method="post">
+<c:import url="head.jsp"/>
+<form action="${pageContext.request.contextPath}/main/choice" method="post">
     <select size="2" name="choice">
         <option disabled>Choose city</option>
         <option value="Moscow">Moscow</option>

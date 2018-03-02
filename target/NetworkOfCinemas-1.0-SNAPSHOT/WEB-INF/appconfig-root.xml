@@ -8,4 +8,10 @@
     <import resource="appconfig-security.xml"/>
     <context:component-scan base-package="net.nel.il"/>
     <context:property-placeholder location="/WEB-INF/properties/hibernate.properties"/>
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="20971520" />
+        <property name="maxInMemorySize" value="1048576" />
+    </bean>
+    <bean id="userDetailsServiceImpl" class="net.nel.il.service.UserDetailsServiceImpl"/>
 </beans>

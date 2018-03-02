@@ -22,6 +22,15 @@ public class Product {
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Session> sessions;
 
+    public Product(){
+
+    }
+
+    public Product(Film film, Cost cost){
+        this.film = film;
+        this.cost = cost;
+    }
+
     public Integer getId() {
         return id;
     }

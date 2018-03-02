@@ -1,5 +1,7 @@
 package net.nel.il.entity;
 
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -36,6 +38,28 @@ public class Film {
     @JoinTable(name = "products", joinColumns = @JoinColumn(name = "film_id"),
                 inverseJoinColumns = @JoinColumn(name = "cost_id"))
     private List<Cost> costs;
+
+    @Transient
+    private CommonsMultipartFile image;
+
+    @Transient
+    private String filmGenres;
+
+    public String getFilmGenres() {
+        return filmGenres;
+    }
+
+    public void setFilmGenres(String filmGenres) {
+        this.filmGenres = filmGenres;
+    }
+
+    public CommonsMultipartFile getImage() {
+        return image;
+    }
+
+    public void setImage(CommonsMultipartFile image) {
+        this.image = image;
+    }
 
     public Integer getId() {
         return id;

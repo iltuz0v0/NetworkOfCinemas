@@ -7,5 +7,15 @@
 </head>
 <body>
 <c:import url="head.jsp"/>
+<c:forEach var="session" items="${sessions}">
+    <div class="delete_film">
+        <p>${session.id}</p>
+        <p>${session.startTime}</p>
+        <p>${session.endTime}</p>
+        <p>${session.product.cost}</p>
+        <p>${session.product.film.title}</p>
+        <a href="/main/person/admin/deletesession/${session.id}" class="delete_film_reference">delete</a>
+    </div>
+</c:forEach>
 </body>
 </html>

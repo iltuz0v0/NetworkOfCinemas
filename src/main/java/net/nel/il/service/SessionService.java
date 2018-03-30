@@ -33,4 +33,20 @@ public class SessionService {
     public void saveSession(Session session){
         sessionDAO.saveSession(session);
     }
+
+    @Transactional
+    public List<Session> getSessions(){
+        return sessionDAO.getSessions();
+    }
+
+    @Transactional
+    public void deleteSessionById(Integer id){
+        sessionDAO.deleteSessionById(id);
+    }
+
+    @Transactional
+    public boolean sessionExistsById(Integer id){
+        return sessionDAO.sessionExistsById(id);
+    }
+
 }

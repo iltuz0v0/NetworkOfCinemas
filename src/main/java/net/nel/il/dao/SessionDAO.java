@@ -37,8 +37,25 @@ public class SessionDAO {
         return (List<Cinema>)query.list();
     }
 
+    public List<net.nel.il.entity.Session> getSessions(){
+        Session session = sessionFactory.getCurrentSession();
+        List<net.nel.il.entity.Session> sessions = session.createQuery("from SessionList").list();
+        return sessions;
+    }
+
     public void saveSession(net.nel.il.entity.Session session){
         Session hibSession = sessionFactory.getCurrentSession();
         hibSession.save(session);
+    }
+
+    public void deleteSessionById(Integer id){
+        Session session = sessionFactory.getCurrentSession();
+        net.nel.il.entity.Session session1 = session.get(net.nel.il.entity.Session.class, id);
+        session.remove(session1);
+    }
+
+    public boolean sessionExistsById(Integer id){
+        Session session = sessionFactory.getCurrentSession();
+        return session.get(net.nel.il.entity.Session.class, id) != null;
     }
 }

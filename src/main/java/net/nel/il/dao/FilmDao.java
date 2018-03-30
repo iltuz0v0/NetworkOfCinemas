@@ -40,7 +40,9 @@ public class FilmDao {
         Query query = session.createQuery("from Genre where genre = :currentGenre");
         for(int amount = 0; amount < filmGenres.length; amount++){
             query.setParameter("currentGenre", filmGenres[amount]);
-            genres.add((Genre)query.uniqueResult());
+            if(query.list().size() != 0){
+                genres.add((Genre)query.uniqueResult());
+            }
         }
         film.setGenres(genres);
         session.save(film);
@@ -50,6 +52,13 @@ public class FilmDao {
         Session session = sessionFactory.getCurrentSession();
         Film film = session.get(Film.class, id);
         session.remove(film);
+    }
+
+    public boolean filmExistsByName(String filmname){
+        Session session = sessionFactory.getCurrentSession();
+        Query query = session.createQuery("from Film where title = :filmname");
+        query.setParameter("filmname", filmname);
+        return query.list().size() != 0;
     }
 
     public boolean filmExistsById(Integer id){

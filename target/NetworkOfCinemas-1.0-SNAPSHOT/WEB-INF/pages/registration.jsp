@@ -8,6 +8,7 @@
 </head>
 <body>
 <c:import url="head.jsp"/>
+<div class="registration_div">
 <form:form action="/main/panel/registration" modelAttribute="user" method="post">
     <form:label path="username">Login</form:label>
     <br/>
@@ -31,5 +32,6 @@
 </form:form>
 <p>${successfully}</p>
 <a href="${pageContext.request.contextPath}/main">Back to main menu</a>
+</div>
 </body>
 </html>

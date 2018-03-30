@@ -8,13 +8,16 @@
 <body>
 <c:import url="head.jsp"/>
 <c:forEach var="film" items="${films}">
-    <p>${film.id}</p>
-    <p>${film.title}</p>
-    <p>${film.ageLimit}</p>
-    <p>${film.poster}</p>
+<div class="delete_film">
+    <p>Id:${film.id}</p>
+    <p>Title:${film.title}</p>
+    <p>Age limit:${film.ageLimit}</p>
+    <img src="/main/getimage/${film.poster}" class="film_image">
     <p>${film.description}</p>
     <p>${film.premiere}</p>
-    <a href="/main/person/admin/deletefilm/${film.id}">delete</a>
+    <a href="/main/person/admin/deletefilm/${film.id}" class="delete_film_reference">delete</a>
+</div>
 </c:forEach>
+<br/><br/><br/>
 </body>
 </html>

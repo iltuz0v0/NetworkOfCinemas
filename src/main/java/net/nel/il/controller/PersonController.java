@@ -175,13 +175,18 @@ public class PersonController {
 
     @RequestMapping(value = "/admin/deletesession", method = RequestMethod.GET)
     public ModelAndView deleteSession(ModelAndView modelAndView){
+        List<Session> sessions = sessionService.getSessions();
+        modelAndView.addObject("sessions", sessions);
         modelAndView.setViewName("deletesession");
         return modelAndView;
     }
 
     @RequestMapping(value = "/admin/deletesession/{sessionname}", method = RequestMethod.GET)
-    public ModelAndView deleteSession(ModelAndView modelAndView, @PathVariable String sessionname){
-        modelAndView.setViewName("deletesession");
+    public ModelAndView deleteSession(ModelAndView modelAndView, @PathVariable Integer sessionname){
+        modelAndView.setViewName("redirect:/main/person/admin/deletesession");
+        if(sessionService.sessionExistsById(sessionname)) {
+            sessionService.deleteSessionById(sessionname);
+        }
         return modelAndView;
     }
 

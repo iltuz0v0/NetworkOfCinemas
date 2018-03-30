@@ -7,13 +7,14 @@
 </head>
 <body>
 <c:import url="head.jsp "/>
-<a href="${pageContext.request.contextPath}/main/person/admin/addfilm">Add Film</a>
-<br/>
-<a href="${pageContext.request.contextPath}/main/person/admin/deletefilm">Delete Film</a>
-<br/>
-<a href="${pageContext.request.contextPath}/main/person/admin/addsession">Add Session</a>
-<br/>
-<a href="${pageContext.request.contextPath}/main/person/admin/deletesession">Delete Session</a>
-<br/>
+<div class="admin_choice">
+<br/><br/>
+<a href="${pageContext.request.contextPath}/main/person/admin/addfilm" class="admin_choice_reference">Add Film</a>
+<br/><br/><br/>
+<a href="${pageContext.request.contextPath}/main/person/admin/deletefilm" class="admin_choice_reference">Delete Film</a>
+<br/><br/><br/>
+<a href="${pageContext.request.contextPath}/main/person/admin/addsession" class="admin_choice_reference">Add Session</a>
+<br/><br/>
+</div>
 </body>
 </html>

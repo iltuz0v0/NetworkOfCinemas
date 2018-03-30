@@ -21,6 +21,11 @@ public class FilmService {
     }
 
     @Transactional
+    public boolean filmExistsByName(String filmname){
+        return filmDao.filmExistsByName(filmname);
+    }
+
+    @Transactional
     public void deleteFilmById(Integer id){
         filmDao.deleteFilmById(id);
     }

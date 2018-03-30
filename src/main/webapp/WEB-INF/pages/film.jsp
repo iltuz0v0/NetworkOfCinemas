@@ -23,8 +23,9 @@
             <br/>
             <p class="film_description">Описание: ${film.description}</p>
             <br/>
-            <a href="/main/${film.title}/table">Table</a>
+            <a href="/main/${film.title}/table" class="delete_film_reference">Table</a>
         </div>
     </div>
 </body>
+<c:import url="footer.jsp"/>
 </html>

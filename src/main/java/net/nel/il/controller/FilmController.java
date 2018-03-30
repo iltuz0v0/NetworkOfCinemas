@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.lang.System;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,6 +29,7 @@ public class FilmController {
     public ModelAndView showFilm(ModelAndView modelAndView, @PathVariable String filmname,
                                  @SessionAttribute("client") Client client){
         if(!isCity(client)) return new ModelAndView("redirect:/main/choice");
+        if(!filmService.filmExistsByName(filmname)) return new ModelAndView("redirect:/main");
         modelAndView.setViewName("film");
         Film film = filmService.getFilmByName(filmname);
         modelAndView.addObject("film", film);

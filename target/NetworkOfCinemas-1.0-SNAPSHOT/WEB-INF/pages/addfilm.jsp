@@ -8,7 +8,9 @@
 </head>
 <body>
 <c:import url="head.jsp"/>
+<div class="add_film">
 <form:form action="/main/person/admin/addfilm" enctype="multipart/form-data" modelAttribute="film" method="post">
+    <br/>
     <label>Image</label>
     <br/>
     <input name="image" class="image" type="file"/>
@@ -45,12 +47,14 @@
     <br/>
     ${odateError}
     <br/>
-    <button type="submit">Submit</button>
+    <button type="submit" class="admin_choice_reference">Submit</button>
 </form:form>
 <c:if test="${not empty successfully}">
 ${successfully}
 <br/>
 <a href="${pageContext.request.contextPath}/main/person/admin">Back to admin menu</a>
 </c:if>
+</div>
+<br/><br/><br/>
 </body>
 </html>

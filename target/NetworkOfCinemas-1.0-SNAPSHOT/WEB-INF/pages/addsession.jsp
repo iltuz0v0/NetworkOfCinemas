@@ -8,18 +8,25 @@
 </head>
 <body>
 <c:import url="head.jsp"/>
-<h1>Films</h1>
+<h1 align="center">Films</h1>
+<div class="films">
 <c:forEach var="film" items="${films}">
-    <p>${film.id} ${film.title} ${film.ageLimit} ${film.description} ${film.premiere}</p>
+    <p>Id:${film.id} Title:${film.title} Age limit:${film.ageLimit} ${film.description} ${film.premiere}</p>
 </c:forEach>
-<h1>Costs</h1>
+</div>
+<h1 align="center">Costs</h1>
+<div class="films">
 <c:forEach var="cost" items="${costs}">
-    <p>${cost.id} ${cost.filmKind} ${cost.cost} ${cost.displayDay}</p>
+    <p>Id:${cost.id} Type:${cost.filmKind} Cost:${cost.cost} Display day:${cost.displayDay}</p>
 </c:forEach>
-<h1>Halls</h1>
+</div>
+<h1 align="center">Halls</h1>
+<div class="films">
 <c:forEach var="hall" items="${halls}">
     <p>${hall.id} ${hall.cinema.name} ${hall.hall.hallType} ${hall.hall.structure}</p>
 </c:forEach>
+</div>
+<div class="add_session">
 <form:form action="/main/person/admin/addsession" modelAttribute="localSession" method="post">
     <form:label path="filmId">Film ID</form:label>
     <br/>
@@ -57,7 +64,9 @@
     <br/>
     ${f2Time}
     <br/>
-    <button type="submit">Submit</button>
+    <button type="submit" class="delete_film_reference">Submit</button>
 </form:form>
+</div>
+<br/><br/><br/>
 </body>
 </html>
